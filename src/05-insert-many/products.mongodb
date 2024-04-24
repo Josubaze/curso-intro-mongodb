@@ -1,0 +1,29 @@
+use("platzi_store")
+
+db.products.drop() //borra todos los docs de la collections
+
+db.products.insertMany([ // insertar varios docs, si hay una colision de _id  si inserta hasta la colision de id duplicate
+  {
+    _id: 1,
+    name: "Product 1",
+    price: 1000
+  },
+  {
+    _id: 2, // por colision hasta aqui carga los docs
+    name: "Product 2",
+    price: 20
+  },
+  {
+    _id: 2,
+    name: "Product 2",
+    price: 300
+  },
+  {
+    _id: 3,
+    name: "Product 3",
+    price: 5000
+  }
+], { ordered: false} ) // con esto salta los duplicados y carga los demás
+
+
+db.products.find()
