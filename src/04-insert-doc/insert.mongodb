@@ -1,0 +1,12 @@
+use("platzi_store")
+
+db.products.insertOne({
+  _id: 1, // forma de dar un id en mongo se recomienda dejar el por defecto de mongo
+  name: "Producto 1",
+  price: 1000
+})
+
+db.products.insertOne({
+  name: "Producto 2",
+  price: 100
+})
