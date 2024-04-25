@@ -1,0 +1,14 @@
+use("platzi_store")
+
+// eliminar solo uno
+db.products.deleteOne({_id: 1});
+//db.products.deleteOne({_id: ObjectId('fafafa6f1a65')}); for productions
+
+
+// eliminar todos los que coincidan con la consulta
+db.products.deleteMany({
+    price: 100
+})
+
+// eliminar todos los elementos de un documento
+db.products.drop()
