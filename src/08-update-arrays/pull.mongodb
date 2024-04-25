@@ -1,0 +1,34 @@
+use("platzi_store")
+
+
+// Add one element from array
+// db.inventory.updateOne({_id: 4}, {
+//   $push: {
+//     tags: "book"
+//   }
+// })
+
+// Add others elements from array
+db.inventory.updateMany({}, {
+  $push: {
+    tags:{
+      $each:["appliance","book"]
+    }
+  }
+})
+
+// Remove one element from array
+// db.inventory.updateMany({}, { // con el query vacia toma todos los docs que contengan el tags
+//   $pull: {
+//     tags: "book"
+//   }
+// })
+
+// Remove others elements from array
+// db.inventory.updateMany({}, {
+//   $pull: {
+//     tags: {
+//       $in: ["appliance", "school"]
+//     }
+//   }
+// })
