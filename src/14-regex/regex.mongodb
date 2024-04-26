@@ -1,0 +1,22 @@
+use("platzi_store")
+
+//db.inventory.find({"item.description": { $regex: /line/ } })
+
+/* También se puede usar el patrón de la expresión
+regular directamente sin $regex, por ejemplo:*/
+
+db.inventory.find({"item.description": /^S/m })
+
+/*++Consultas++
+
+/line/ => nos devuelve los doc que tengan la palabra line, exactamente como esta escrita.
+
+/line/i => nos devuelve los doc que tengan la palabra line, ignorando minus-mayus.
+
+/line$/ => nos devuelve los doc que terminen con la palabra line.
+
+/^Single/ => nos devuelve los doc que empiecen con la palabra Single.
+
+/^S/m => nos devuelve los doc que empiecen por S, , tambien toma en consideración los nuevos parrafos con salto de linea. Ej: ( Single line Second line ).
+
+/^s/im => nos devuelve los doc que empiecen por S o s, tambien toma en consideración los nuevos parrafos con salto de linea. Ej: ( Single line Second line ).*/
