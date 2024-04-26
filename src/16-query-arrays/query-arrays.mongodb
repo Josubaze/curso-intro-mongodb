@@ -1,0 +1,46 @@
+use("platzi_store")
+/*---------------- IN VALUES & ARRAY------------ */
+/* $in => para seleccionar documentos que tengan un campo con un valor
+que coincida con cualquiera de los valores especificados en un array.*/
+
+//db.inventory.find({ qty: { $in: [20,25]} })
+
+// db.inventory.find({
+//     tags: { $in: ["book", "electronics"]}
+//     //$in funcionaria como "or"
+// })
+
+/*---------------- NIN VALUES & ARRAY ------------ */
+// $nin para establecer que no traiga elementos que coincidan con la query
+
+//db.inventory.find({ qty: { $nin: [20,25]} })
+
+// db.inventory.find({
+//     tags: { $nin: ["book", "electronics"]}
+//     //$nin funcionaria como "or"
+// })
+
+/*---------------- ONLY ARRAY ------------ */
+
+// operadores que solo funcionan para arrays
+//db.inventory.find({ tags: "book"}) //retorna los que docs que contienen book
+//db.inventory.find({ tags: ["school", "book"]}) // respeta el orden del array, es decir retorna aquellos que estan exactamente igual.
+//db.inventory.find({ tags: ["book", "school"]}) // retorna [] no cumple el orden.
+
+
+// operador $all prioriza el contenido no el orden y debe contener todos los descritos. ejm book y school
+//db.inventory.find({ tags: {$all: ["book", "school"]}})
+
+/* operador $size, retona los documentos que cumplan con la cantidad puesta, ejm. 2*/
+//db.inventory.find({ tags: {$size: 2}})
+
+/*operador $elemMatch sirve para cuando tenemos un array con objetos dentro y queremos ser
+exactos en la query*/
+//db.survey.find({ results: {$elemMatch: {product: "xyz"}}})
+
+db.survey.find({
+  results: {$elemMatch: {
+      product: "xyz",
+      score: { $gte:7}
+  }}
+})
