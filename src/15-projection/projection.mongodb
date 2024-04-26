@@ -1,0 +1,9 @@
+use("sample_training")
+
+//Aqui aplicamos projection de forma explicita
+db.trips.find(
+  // query - filtrado en base a propiedades descritas
+  {tripduration: { $lte:500 }, usertype:"Subscriber" }
+  // projection - atributos a imprimir de los elementos encontrados en la query, con el valor 1 ó true.
+).projection( {"tripduration": 1, "end station name": 1, _id: 0} ) // _id es el unico que se muestra siempre, sino lo queremos debemos ocultarlo explicitamente
+
