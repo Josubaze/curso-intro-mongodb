@@ -1,0 +1,36 @@
+use("sample_training")
+
+// para saber cuantos terminaron donde iniciaron el viaje en bici
+// db.trips.find( {
+//   $expr: {
+//     $eq: ["$start station id", "$end station id"]
+//   }
+// }).count()
+
+// para saber cuantos terminaron donde iniciaron el viaje en bici, con un tiempo mayor a 1200s
+//use("sample_training")
+// db.trips.find({
+//     $and: [
+//         {$expr: {
+//             $eq: ["$start station id", "$end station id"]
+//         }},
+//         {tripduration: {
+//             $gte: 1200
+//         }}
+//     ]
+// }).count()
+
+
+// con and implicito
+use("sample_training")
+db.trips.find({
+  tripduration: {
+    $gte: 1200
+  },
+  $expr: { // al ser op $expr se usa [element, element-compare] para comparar
+    $eq: ["$start station id", "$end station id"]
+  }
+}).count()
+
+// si estuviera el tripduration dentro del op $expr seria entonce:
+// { $gte: ["$tripduration", 1200] }
