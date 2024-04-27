@@ -1,0 +1,29 @@
+
+use("sample_training")
+
+// db.trips.find({"start station location.type": "Point"})
+//db.companies.find()
+// cuantos CEO de compania se llaman Mark
+// db.companies.find({
+//   "relationships.0.person.first_name": "Mark"
+// },
+// {
+//   name: 1,
+//   relationships: 1,
+//   // relationships: {$first: '$relationships'}, //trae solo el primer elment del array relationships, el CEO en este caso.
+//   _id: 0
+// })
+
+// Buscar una persona dentro de la compania que se llame Mark
+db.companies.find({
+  relationships: {
+    $elemMatch: {
+      "person.first_name": "Mark"
+    }
+  }
+},
+{
+  name: 1,
+  relationships: 1,
+  _id: 0
+}).count()
