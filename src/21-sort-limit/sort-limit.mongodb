@@ -1,0 +1,17 @@
+use('sample_training');
+
+// .sort() => sirve para organizar los documentos ASC o DESC
+// "1" organiza los datos ASC
+// "-1" organiza los datos DESC
+// .limit() => Limita la cantidad de doc que queremos trae
+// projection son las variables a visualizar
+//.skip() => indica desde que posición nos traera los doc.
+db.zips
+.find({ pop: {  $gte: 100 }
+    })
+.sort({pop: -1})
+.limit(50)
+.projection({ pop: 1,
+            city: 1,
+            _id: 0
+})

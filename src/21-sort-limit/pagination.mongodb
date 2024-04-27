@@ -1,0 +1,6 @@
+use("platzi_store")
+
+db.categories
+  .find()
+  .skip(2) // desde el doc 2
+  .limit(2) // traer max 2 docs
