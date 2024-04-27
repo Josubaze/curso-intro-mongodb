@@ -1,0 +1,24 @@
+use("sample_training")
+
+// db.routes.find({airplane: "E70"}) // vuelos del E70
+
+// db.routes.find({
+//   $or: [
+//     { src_airport: "BOG" },
+//     { dst_airport: "BOG" }
+//   ]
+// }).count() // vuelos de partida y destino a bogota
+
+db.routes.find({
+  $and: [
+    {
+      airplane: "E70"
+    },
+    {
+      $or: [
+        { src_airport: "BOG" },
+        { dst_airport: "BOG" }
+      ]
+    }
+  ]
+}).count() // vuelos del E70 de partida y destino a bogota
